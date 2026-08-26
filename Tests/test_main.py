@@ -13,8 +13,8 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"mensaje": "API funcionando correctamente"}
-
+    # assert response.json() == {"mensaje": "API funcionando correctamente"}
+    assert response.json() == {"mensaje": "Este texto está mal a propósito"}
 
 def test_health_check():
     response = client.get("/health")
