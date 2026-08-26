@@ -20,7 +20,7 @@ jobs:
           python-version: '3.13'
 
       - name: Instalar dependencias
-        run: pip install -r requirements.txt
+        run: pip install -r App/requirements.txt
 
       - name: Ejecutar tests
         run: pytest
