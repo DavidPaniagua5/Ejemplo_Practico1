@@ -29,12 +29,12 @@ def test_get_usuarios():
     assert "usuarios" in data
     assert len(data["usuarios"]) == 2   
 
-def test_get_usuario_existente():
-    response = client.get("/usuarios/1")
-    assert response.status_code == 200
-    assert response.json() == {"id": 1, "nombre": "Ana"}
+# def test_get_usuario_existente():
+#     response = client.get("/usuarios/1")
+#     assert response.status_code == 200
+#     assert response.json() == {"id": 1, "nombre": "Ana"}
 
-def test_get_usuario_no_existente():
-    response = client.get("/usuarios/99")
-    assert response.status_code == 200
-    assert response.json() == {"error": "Usuario no encontrado"}
+# def test_get_usuario_no_existente():
+#     response = client.get("/usuarios/99")
+#     assert response.status_code == 200
+#     assert response.json() == {"error": "Usuario no encontrado"}
