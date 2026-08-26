@@ -31,5 +31,5 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy notification
-        run: echo "CI pasó correctamente. Render desplegará automáticamente vía webhook."   
+      - name: Disparar despliegue en Render
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"   
