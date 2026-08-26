@@ -13,8 +13,8 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    # assert response.json() == {"mensaje": "API funcionando correctamente"}
-    assert response.json() == {"mensaje": "Este texto está mal a propósito"}
+    assert response.json() == {"mensaje": "API funcionando correctamente"}
+    #   assert response.json() == {"mensaje": "Este texto está mal a propósito"}
 
 def test_health_check():
     response = client.get("/health")
@@ -28,3 +28,13 @@ def test_get_usuarios():
     data = response.json()
     assert "usuarios" in data
     assert len(data["usuarios"]) == 2   
+
+def test_get_usuario_existente():
+    response = client.get("/usuarios/1")
+    assert response.status_code == 200
+    assert response.json() == {"id": 1, "nombre": "Ana"}
+
+def test_get_usuario_no_existente():
+    response = client.get("/usuarios/99")
+    assert response.status_code == 200
+    assert response.json() == {"error": "Usuario no encontrado"}

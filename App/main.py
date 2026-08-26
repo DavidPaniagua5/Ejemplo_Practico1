@@ -18,3 +18,13 @@ def get_usuarios():
             {"id": 2, "nombre": "Luis"}
         ]
     }
+
+@app.get("/usuarios/{usuario_id}")
+def get_usuario_por_id(usuario_id: int):
+    usuarios = {
+        1: {"id": 1, "nombre": "Ana"},
+        2: {"id": 2, "nombre": "Luis"}
+    }
+    if usuario_id in usuarios:
+        return usuarios[usuario_id]
+    return {"error": "Usuario no encontrado"}
