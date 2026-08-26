@@ -1,0 +1,30 @@
+import sys
+import os
+
+# Permite importar main.py desde la carpeta App/
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'App'))
+
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"mensaje": "API funcionando correctamente"}
+
+
+def test_health_check():
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
+
+def test_get_usuarios():
+    response = client.get("/usuarios")
+    assert response.status_code == 200
+    data = response.json()
+    assert "usuarios" in data
+    assert len(data["usuarios"]) == 2   
